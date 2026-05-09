@@ -6,18 +6,48 @@ export default class StartupScene extends Scene {
   }
 
   preload() {
-    // assets si besoin
+    // assets
     this.load.image("lakorobeFond", "assets/lakorobe/lakorobe.png");
+    this.load.image("backgroundBamboo", "assets/lakorobe/backgroundBamboo.png");
     this.load.audio("popupSong", "assets/song/popup.mp3");
     this.load.audio("startup", "assets/song/startup.mp3");
+
+    this.load.spritesheet("maki-3", "assets/lakorobe/maki-3.png", {
+      frameWidth: 480,
+      frameHeight: 469,
+    });
+
+    this.load.spritesheet("litle-bamboo", "assets/lakorobe/litle-bamboo.png", {
+      frameWidth: 335,
+      frameHeight: 480,
+    });
+
+    this.load.spritesheet("bararata", "assets/lakorobe/bararata.png", {
+      frameWidth: 480,
+      frameHeight: 480,
+    });
+
+    this.load.spritesheet("feuille", "assets/lakorobe/feuille.png", {
+      frameWidth: 480,
+      frameHeight: 480,
+    });
 
   }
 
   create() {
+    this.backgroundBamboo = this.add.sprite(0, 0, "backgroundBamboo");
+    this.backgroundBamboo.setPosition(this.scale.width / 2, this.scale.height / 2);
+    this.backgroundBamboo.setScale(0.45);
+
     this.lakorobeFond = this.add
       .image(this.scale.width / 2, 0, "lakorobeFond")
       .setOrigin(0.5, 0);
     this.lakorobeFond.setScale(0.7);
+
+    this.showAnimations("makiblue", "maki-3", this.scale.width / 2, this.scale.height + 40, 0, 44, 12);
+    this.showAnimations("bamboo", "litle-bamboo", 20, this.scale.height, 0, 3, 3);
+    this.showAnimations("bararata", "bararata", (2 * this.scale.width / 3) + 60, this.scale.height + 20, 0, 120, 11);
+    this.showAnimations("feuille", "feuille", 0, this.scale.height / 2 - 80, 0, 5, 7);
 
     this.popupSong = this.sound.add("popupSong", {
       loop: false,
@@ -65,8 +95,25 @@ export default class StartupScene extends Scene {
 
     jouerBtn.on("pointerdown", () => {
       this.popupSong.play();
-      this.scene.start("GameScene");
+      this.scene.start("TutorielScene");
     });
-    
   }
+
+  showAnimations(key, name, x, y, start = 0, end = 44, frameRate = 12) {
+    this.anims.create({
+      key: key,
+      frames: this.anims.generateFrameNumbers(name, {
+        start: start,
+        end: end,
+      }),
+      frameRate: frameRate,
+      repeat: -1,
+    });
+
+    const anim = this.add.sprite(x, y, name);
+    anim.setScale(0.5);
+    anim.setOrigin(0, 1);
+    anim.play(key);
+  }
+
 }

@@ -64,7 +64,7 @@ export default class GameScene extends Scene {
 
     // show message to the player to go to the
     this.afficherMessage(
-      `Bienvenue Bob! \nPartons ensemble à collecter les 7 fleurs 🌸 dispersées dans LAKORO, Utilisez les flèches du clavier pour me déplacer!`,
+      `Es-tu prêt, Champion ?\n\nPartons à la collecte des 7 fleurs dispersées dans LAKORO. Travaillons ensemble : tu les cherches et je les ramasse !`,
       "C'est parti!"
     );
 
@@ -78,7 +78,7 @@ export default class GameScene extends Scene {
     }
     if (this.cursors.space.isDown) {
       // espace
-      this.lia.speed = 300;
+      this.lia.speed = 350;
     }
     if (this.cursors.space.isUp) {
       // espace
@@ -209,7 +209,7 @@ export default class GameScene extends Scene {
 
     if (this.flowerCollected === 7) {
       this.afficherMessage(
-        "Félicitations! Vous avez collecté toutes les fleurs! 🌸",
+        "Incroyable !\n\nTu as retrouvé et collecté toutes les fleurs dans LAKORO ! L’aventure est un succès !",
         "Suivant"
       );
     }
@@ -279,4 +279,5 @@ export default class GameScene extends Scene {
       button.setBackgroundColor("#4caf50");
     });
   }
+
 }
