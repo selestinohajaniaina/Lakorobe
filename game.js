@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import StartupScene from './scenes/StartupScene.js'
 import GameScene from './scenes/GameScene.js'
 
 new Phaser.Game({
@@ -10,5 +11,5 @@ new Phaser.Game({
         default: 'arcade',
         arcade: { debug: false }
     },
-    scene: [GameScene]
+    scene: [StartupScene, GameScene]
 })
