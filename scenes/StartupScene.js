@@ -10,7 +10,7 @@ export default class StartupScene extends Scene {
     this.load.image("lakorobeFond", "assets/lakorobe/lakorobe.png");
     this.load.image("backgroundBamboo", "assets/lakorobe/backgroundBamboo.png");
     this.load.audio("popupSong", "assets/song/popup.mp3");
-    this.load.audio("startup", "assets/song/startup.mp3");
+    this.load.audio("startup", "assets/song/startup1.mp3");
 
     this.load.spritesheet("maki-3", "assets/lakorobe/maki-3.png", {
       frameWidth: 480,
@@ -44,7 +44,7 @@ export default class StartupScene extends Scene {
       .setOrigin(0.5, 0);
     this.lakorobeFond.setScale(0.7);
 
-    this.showAnimations("makiblue", "maki-3", this.scale.width / 2, this.scale.height + 40, 0, 44, 12);
+    this.showAnimations("makiblue", "maki-3", this.scale.width / 2, this.scale.height + 40, 0, 40, 12);
     this.showAnimations("bamboo", "litle-bamboo", 20, this.scale.height, 0, 3, 3);
     this.showAnimations("bararata", "bararata", (2 * this.scale.width / 3) + 60, this.scale.height + 20, 0, 120, 11);
     this.showAnimations("feuille", "feuille", 0, this.scale.height / 2 - 80, 0, 5, 7);

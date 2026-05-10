@@ -2,7 +2,7 @@ import { Scene, manager } from "@tialops/maki";
 
 export default class GameScene extends Scene {
   // config
-  caractereSpeed = 200;
+  caractereSpeed = 100;
   flowerCollected = 0;
 
   // si le message est affiché ou pas
@@ -50,7 +50,9 @@ export default class GameScene extends Scene {
     this.musicBackground = this.sound.add("stepOneBackgroungSong", {
       loop: true,
     });
+    this.sound.stopAll();
     this.musicBackground.play();
+    // console.log(this.sound);
 
     // effet click boutton
     this.pickupSong = this.sound.add("pickupSong", {
@@ -75,14 +77,6 @@ export default class GameScene extends Scene {
   update() {
     if (this.isMessageDisplayed === false) {
       this.maki.move(this.lia);
-    }
-    if (this.cursors.space.isDown) {
-      // espace
-      this.lia.speed = 350;
-    }
-    if (this.cursors.space.isUp) {
-      // espace
-      this.lia.speed = 200;
     }
   }
 
@@ -210,12 +204,15 @@ export default class GameScene extends Scene {
     if (this.flowerCollected === 7) {
       this.afficherMessage(
         "Incroyable !\n\nTu as retrouvé et collecté toutes les fleurs dans LAKORO ! L’aventure est un succès !",
-        "Suivant"
+        "Suivant",
+        () => {
+          this.scene.start("CultiveScene");
+        }
       );
     }
   }
 
-  afficherMessage(message, boutonText = "OK") {
+  afficherMessage(message, boutonText = "OK", callback = null) {
     this.popupSong.play();
     this.isMessageDisplayed = true;
     // Texte
@@ -266,6 +263,9 @@ export default class GameScene extends Scene {
           text.destroy();
           button.destroy();
           this.isMessageDisplayed = false;
+          if (callback) {
+            callback();
+          }
         },
       });
     });
@@ -279,5 +279,4 @@ export default class GameScene extends Scene {
       button.setBackgroundColor("#4caf50");
     });
   }
-
 }

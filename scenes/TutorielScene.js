@@ -13,9 +13,9 @@ export default class TutorielScene extends Scene {
     this.backgroundBamboo.setPosition(this.scale.width / 2, this.scale.height / 2);
     this.backgroundBamboo.setScale(0.45);
 
-    this.showAnimations("bamboo", "litle-bamboo", 20, this.scale.height, 0, 3, 3);
-    this.showAnimations("bararata", "bararata", (2 * this.scale.width / 3) + 60, this.scale.height + 20, 0, 120, 11);
-    this.showAnimations("feuille", "feuille", 0, this.scale.height / 2 - 80, 0, 5, 7);
+    this.showAnimations("bamboo1", "litle-bamboo", 20, this.scale.height, 0, 3, 3);
+    this.showAnimations("bararata1", "bararata", (2 * this.scale.width / 3) + 60, this.scale.height + 20, 0, 120, 11);
+    this.showAnimations("feuille1", "feuille", 0, this.scale.height / 2 - 80, 0, 5, 7);
 
     this.popupSong = this.sound.add("popupSong", {
       loop: false,
@@ -25,13 +25,11 @@ export default class TutorielScene extends Scene {
       loop: true,
     });
 
-    this.startupSong.play();
-
     this.afficherMessage("Bienvenue Champion !\n\nDécouvre Lakorobe, un monde magique inspiré de Madagascar 🇲🇬, où la nature et les animaux vivent en harmonie à travers une grande aventure.", "Suivant >", () => {this.expliquerControles()});
   }
 
   expliquerControles() {
-    this.afficherMessage("Voici Lia, ta companion dans cette aventure!\n\nUtilise les flèches directionnelles (↑ ↓ ← →) pour déplacer et maintenir la barre d'espace pour courir.", "J'ai compris", () => {
+    this.afficherMessage("Voici Lia, ta companion dans cette aventure!\n\nUtilise les flèches directionnelles (↑ ↓ ← →) pour la déplacer.", "J'ai compris", () => {
      this.scene.start("GameScene");
     });
   }
